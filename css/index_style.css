@@ -1,0 +1,160 @@
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto Light'), local('Roboto-Light'), url(//fonts.gstatic.com/s/roboto/v18/0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
+}
+
+@font-face
+{
+	font-family: my;
+	src: url('fonts/roboto.ttf');
+}
+
+html, body
+{
+	background-color: #f1f1f1;
+	padding: 0;
+	margin: 0;
+	font-family: my;
+	//overflow-x: hidden;
+}
+
+/*------index page main divs------*/
+	.index_banner
+	{
+		height: 300px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.index_banner img
+	{
+		position: absolute;
+		top:0px;
+		left:0;
+		right:0;
+		width: 100%;
+	}
+
+	.row
+	{
+		padding: 0;
+		margin: 0;
+	}
+
+	.index_logo
+	{
+		text-align: center;
+	}
+
+	.index_logo img
+	{
+		width: 70%;
+	}
+
+/*--------login and register control------*/
+	.log_reg
+	{
+		//background: green;
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		padding: 5%;
+	}
+
+	.sign_up_text
+	{
+		color: #00cc44;
+		text-align: left;
+		font-size: 180%;
+	}
+
+	.login_div
+	{
+		text-align: center;
+		//background: red;
+	}
+
+	.login_div input
+	{
+		width: 70%;
+		height: 37px;
+		background: white;
+		border: none;
+		border-radius: 3px;
+		padding: 5px;
+		border: lightgrey 1px solid;
+	}
+
+	.login_submit, .register_submit
+	{
+		background: #00cc44;
+		color: white;
+		height: 35px;
+		border: none;
+		border-radius: 3px;
+		width: 40%;
+	}
+
+	.register_div
+	{
+		text-align: center;
+	}
+
+	.register_div input
+	{
+		width: 70%;
+		height: 37px;
+		background: white;
+		border: none;
+		border-radius: 3px;
+		padding: 5px;
+		border: lightgrey 1px solid;
+	}
+
+	#reg_feed
+	{
+		text-align: center;
+		margin:auto;
+		background: red;
+		color: white;
+		width: 80%;
+	}
+
+	.logout_button
+	{
+		background: #00cc44;
+		color: white;
+		height: 35px;
+		border: none;
+		border-radius: 3px;
+		width: 80px;
+	}
+
+/*---forgot password controls---*/
+	.forgot_pass
+	{
+		font-size: 90%;
+		cursor: pointer;
+		color: grey;
+	}
+
+	.recovery_div, .new_pass_div, .forgot_div
+	{
+		display: none;
+	}
+
+	.forgot_button, .recovery_button, .back_to_login, .new_pass_button
+	{
+		background: #00cc44;
+		color: white;
+		height: 35px;
+		border: none;
+		border-radius: 3px;
+		width: 80px;
+	}
+
+	.recovery_email
+	{
+		font-size: 120%;
+		color: #00cc44;
+	}
