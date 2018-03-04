@@ -8,26 +8,32 @@
 	if(isset($_COOKIE['signed_username']))
 	{
 		$signed_username = $_COOKIE['signed_username'];
-	}
-	else
-	{
-		$signed_username = null;
-	}
 
-	//checking if user is friend
+		//checking if user is friend
 		$check_frnd_query = "SELECT id FROM " . $username . "_info WHERE comp = '" . $signed_username . "'";
 		$check_frnd_query_run = mysqli_query($connect_link, $check_frnd_query);
 		$check_frnd = mysqli_num_rows($check_frnd_query_run);
 
-		if($check_frnd == 1 || $signed_username == $username)
+		if($username == $signed_username)
 		{
 			$user_post_access = 1;
 		}
 		else
 		{
 			$user_post_access = 0;
-		}
 
+			if($check_frnd == 1)
+			{
+				$user_post_access = 2;
+			}
+		}
+	}
+	else
+	{
+		$signed_username = null;
+		$user_post_access = 0;
+	}
+	
 //fetching user_info
 	$fetch_user_info_query = "SELECT * FROM users_info WHERE username = '" . $username . "'";
 	$fetch_user_info_query_run = mysqli_query($connect_link, $fetch_user_info_query);
@@ -91,28 +97,24 @@
 			}
 		//for getting time passed since post
 
+		//displaying posts
 			echo "<div class=\"post_div\">
 					<div class=\"post_text_container\">
 						<div class=\"post_user_dp_name_mob\">
-							<img class=\"post_dp_icon\" src=\"$dp_location\" onerror=\"this.onerror=null;this.src='img/def_user_dp.jpg';\"/>&emsp;$user_name";
+							<img class=\"post_dp_icon\" src=\"$dp_location\" onerror=\"this.onerror=null;this.src='img/def_user_dp.jpg';\"/>&nbsp $user_name";
+							
 							if($get_post_location != "")
 							{
 								echo "<span> at <img class=\"post_location_icon\" src=\"img/location.png\" />$get_post_location</span>";
 							}
 
-			echo		"	&nbsp &nbsp
-							<span class=\"post_comment_time\">";
-							if($time_in_days <=2)
+						//showing delete button only if opened profile is of the loggined user
+							if($user_post_access == 1)
 							{
-								echo "$time_in_mnths $time_in_days $time_in_hrs $time_in_mins ago";
+								echo "<img class=\"post_delt_button\" src=\"img/delete1.png\">";
 							}
-							else
-							{
-								echo date('d M Y', strtotime($get_post_time));
-							}
-
-			echo "				</span>
-						</div>
+			
+				echo 	"</div>
 
 						<div class=\"post_content_container\">";
 
@@ -133,18 +135,12 @@
 							if($get_post_text !="")
 							{
 								echo "<div class=\"post_text_content\">$get_post_text</div>";
-								// echo "	<style>
-								// 			.post_content_container
-								// 			{
-								// 				height: auto;
-								// 			}
-								// 		</style>";
+								
 							}
 							
-
 			echo "		</div>";
 
-						if($user_post_access == 1)
+						if($user_post_access == 1 || $user_post_access == 2)
 						{
 							echo "	<div class=\"post_like_comment_button\">";
 
@@ -175,18 +171,33 @@
 							echo "		<span class=\"post_like_count\">$like_count</span>
 										&emsp;
 
-										<img class=\"post_comment_button\" src=\"img/comment.png\"/>
-										&emsp;
+										<img class=\"post_comment_button\" src=\"img/comment.png\"/>";
 
-										<img class=\"post_send_story_button\" src=\"img/send_story.png\"/>
+										if($user_post_access == 1)
+										{
+											echo "&emsp; <img class=\"post_send_story_button\" src=\"img/send_story.png\"/>";
+										}
 
-										<img class=\"post_fav_button\" src=\"img/add_fav.png\"/>
-										&emsp;
-									</div>";
-						}
-						else
-						{
-							
+							echo "		&nbsp &nbsp
+										<span class=\"post_time\">";
+										if($time_in_days <=2)
+										{
+											echo "$time_in_mnths $time_in_days $time_in_hrs $time_in_mins ago";
+										}
+										else
+										{
+											echo date('d M Y', strtotime($get_post_time));
+										}
+
+							echo "		</span>";
+
+										if($user_post_access == 1)
+										{
+											echo "	<img class=\"post_fav_button\" src=\"img/add_fav.png\"/>
+													&emsp;";
+										}
+										
+							echo"	</div>";
 						}
 			
 			echo	"</div>
@@ -270,6 +281,39 @@
 		});	
 		
 		this_post.find('.post_comment_container').fadeIn(500);
+	});
+
+//on clicking on delete button
+	$('.post_delt_button').click(function()
+	{
+		var this_post = $(this).parent().parent().parent();
+		var this_post_id = $.trim(this_post.find('.post_id').text());
+		
+		$.post('php/delete_user_post.php', {this_post_id: this_post_id}, function(e)
+		{
+			if(e == 1)
+			{
+				location.reload();
+			}
+			else
+			{
+				$('.warn_box').text("Something went wrong while deleting the post.");
+				$('.warn_box').css('background', 'red');
+				$('.warn_box').fadeIn(200).delay(2000).fadeOut(200);
+			}
+		});
+
+	});
+
+//on clicking on post //opening the post 
+	$('.post_content_container').click(function()
+	{
+		var username = $.trim("<?php echo $username; ?>");
+		var this_post = $(this).parent().parent();
+		var this_post_id = $.trim(this_post.find('.post_id').text());
+
+		//alert(signed_username);
+		window.location.href = "post_view.php?username=" + username + "&post_id=" + this_post_id;
 	});
 
 </script>

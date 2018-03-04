@@ -8,6 +8,11 @@
 <br>
 <div class="upload_pic_feed"></div>
 
+<ul class="upload_ins">
+	<li>Image size must be less than 1 MB.</li>
+	<li>Video size must be less than 20 MB.</li>
+</ul>
+
 <button class="upload_done">Done</button>
 
 
@@ -56,6 +61,8 @@
 							$('#file').fadeOut(0);
 							$('.post_video').fadeOut(0);
 							$('.post_photo').fadeOut(0);
+							$('.upload_ins').fadeOut(0);
+							
 							$('.upload_done').fadeIn(0);
 
 						//creating thumbnail in right side of textarea

@@ -21,7 +21,6 @@
 	$about_user_username = $fetch_user_about_assoc['username'];
 	$about_user_dp = $fetch_user_about_assoc['dp'];
 	$about_user_cover = $fetch_user_about_assoc['cover'];
-
 ?>
 
 <!------user about page-------->

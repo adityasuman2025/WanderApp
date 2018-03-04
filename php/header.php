@@ -36,7 +36,7 @@
 				}
 				else
 				{
-					echo "<a class=\"header_login_button\" href=\"index.php\">Login</a>";
+					//echo "<a class=\"header_login_button\" href=\"index.php\">Login</a>";
 				}
 			?>
 		</div>
@@ -59,7 +59,7 @@
 			}
 			else
 			{
-				echo "<a class=\"header_login_button\" href=\"index.php\">Login</a>";
+				echo "<a class=\"header_login_button\" href=\"index.php\">Login / Register</a>";
 			}
 
 		?>
@@ -86,7 +86,7 @@
 <!-------post ajax loading divs-------->
 	<div class="post_ajax_loading_div">
 		<img class="close_icon" src="img/close.png"/>
-		<div class="post_ajax_content">jkjnbkj</div>
+		<div class="post_ajax_content"></div>
 	</div>
 
 <!-------notification ajax loading divs-------->
@@ -95,20 +95,31 @@
 		<div class="notif_ajax_content"></div>
 	</div>
 
-<!--------chat box---------->
-	<button class="chat_box_button">Chat</button>
-
-	<div class="chat_box_div">
-		<div class="chat_box_title">
-			Online Companion
-			<img src="img/minimise.png">
-		</div>
-
-		<div class="search_chat">
-			<input type="text">
-			<button><img src="img/search.png"></button>
-		</div>
+<!----------warning ajax box---------->
+	<div class="warn_box">
+			
 	</div>
+
+<!--------chat box---------->
+	<?php
+		if(isset($_COOKIE['signed_username']))
+		{
+			echo "<button class=\"chat_box_button\">Chat</button>";
+			echo "	
+					<div class=\"chat_box_div\">
+						<div class=\"chat_box_title\">
+							Online Companion
+							<img src=\"img/minimise.png\">
+						</div>
+
+						<div class=\"search_chat\">
+							<input type=\"text\">
+							<button><img src=\"img/search.png\"></button>
+						</div>
+					</div>
+				";
+		}
+	?>
 
 <!--script-------->
 	<script type="text/javascript">

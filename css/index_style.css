@@ -21,7 +21,7 @@ html, body
 /*------index page main divs------*/
 	.index_banner
 	{
-		height: 300px;
+		height: 400px;
 		overflow: hidden;
 		position: relative;
 	}

@@ -1,8 +1,3 @@
-	@font-face {
-	  font-family: Roboto;
-	  src: local('Roboto Light'), local('Roboto-Light'), url(//fonts.gstatic.com/s/roboto/v18/0eC6fl06luXEYWpBSJvXCBJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-	}
-
 	@font-face
 	{
 		font-family: my;
@@ -182,7 +177,7 @@
 		padding: 8px;
 		width: 200px;
 		border-radius: 15px 0px 0px 15px;
-		box-shadow: 0px 0px 0px grey;
+		box-shadow: 0px 0px 5px black;
 		font-size: 110%;
 	}
 
@@ -191,13 +186,13 @@
 		background-color: white;
 		position: fixed;
 		right:0;
-		bottom: 3%;
+		bottom: 0;
 		height: 70%;
 		z-index: 100;
-		box-shadow: 0px 0px 5px grey;
 		border-radius: 20px 20px 0px 0px;
 		width: 250px;
 
+		box-shadow: 1px 1px 10px black;
 		display: none;
 	}
 
@@ -239,7 +234,7 @@
 	.search_chat input
 	{
 		width: 80%;
-		height: 28px;
+		height: 24px;
 		vertical-align: middle;
 		border: none;
 		border-radius: 3px;
@@ -247,7 +242,7 @@
 
 	.search_chat button
 	{
-		height: 28px;
+		height: 24px;
 		width: 15%;
 		border: none;
 		background: none;
@@ -261,25 +256,28 @@
 		padding: 2px;
 	}
 
-
 /*------user banner and dp------*/
 	.user_banner
 	{
-		//margin-top: 53px;
 		position: relative;
 		width:100%;
 		height: 400px;
 		overflow: hidden;
 		background: black;
+
+		//display: none;
 	}
 
 	.user_banner img
 	{
 		background: black;
 		position: absolute;
-		width: 120%;
 		top:0px;
-		left: -20px;
+		left: 0px;
+		
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.user_name
@@ -304,6 +302,16 @@
 		text-align: center;
 		background: white;
 		box-shadow: 0px 0px 1px grey;
+
+		left: -50px;
+		opacity: 0;
+		transition: .8s;
+	}
+
+	.user_info_entry
+	{
+		left: 0;
+		opacity: 1;
 	}
 
 	.user_dp
@@ -415,6 +423,16 @@
 		margin: 0;
 		padding-left: 10px;
 		padding-right: 10px;
+
+		right: -50px;
+		opacity: 0;
+		transition: .8s;
+	}
+
+	.user_option_post_entry
+	{
+		opacity: 1;
+		right:0;
 	}
 
 	.user_option
@@ -558,9 +576,7 @@
 /*----user post--------*/
 	.user_post
 	{
-		//box-shadow: 0px 0px 1px grey;
 		margin-top: 50px;
-		//background: white;
 		overflow: hidden;
 	}
 
@@ -747,20 +763,29 @@
 	.user_people_div
 	{
 		background: #f1f1f1;
-		//background-color: lightgrey;
+		border-radius: 25px;
 		box-shadow: 0px 0px 1px grey;
 		padding: 3px;
-		margin: 3px;
-		height: 50px;
-		width: 47%;
+		margin: 5px;
+		width: 45%;
 		display: inline-block;
 		text-align: left;
 	}
 
 	.user_people_div img
 	{
-		height: 100%;
+		height: 50px;
+		width: 50px;
+		object-fit: cover;
+		border-radius: 50%;
 		vertical-align: middle;
+	}
+
+	.user_people_div span
+	{
+		text-decoration: none;
+		color: grey;
+		font-size: 115%;
 	}
 
 	.remove_people_block_button
@@ -769,13 +794,6 @@
 		vertical-align: middle;
 		float: right;
 		cursor: pointer;
-	}
-
-	.user_people_div a
-	{
-		
-		text-decoration: none;
-		color: grey;
 	}
 
 /*----user ajax-------*/
@@ -858,7 +876,6 @@
 		text-align: center;
 		margin: auto;
 		font-size: 115%;
-		//box-shadow: 1px 1px 5px grey;
 		cursor: pointer;
 		border-radius: 10px;
 	}
@@ -875,6 +892,16 @@
 		text-align: left;
 		display: inline-block;
 		vertical-align: top;
+
+		margin-top: -30px;
+		opacity: 0;
+		transition: .8s;
+	}
+
+	.post_div_entry
+	{
+		opacity: 1;
+		margin-top: 20px;
 	}
 
 /*----post_text_container-----*/
@@ -905,7 +932,9 @@
 	.post_dp_icon
 	{
 		height: 25px;
-		border-radius: 25px;
+		object-fit: cover;
+  		width: 25px;
+		border-radius: 50%;
 		vertical-align: middle;
 		background: white;
 	}
@@ -917,12 +946,27 @@
 		vertical-align: middle;
 	}
 
+	.post_delt_button
+	{
+		height: 20px;
+		float: right;
+		cursor: pointer;
+	}
+
+	.post_content_container
+	{
+		cursor: pointer;
+		width: 100%;
+	}
+
 	.post_text_content
 	{
 		color: black;
-		padding: 5px;
+		padding: 10px;
 		text-align: left;
-		font-size: 120%;
+		font-size: 110%;
+		width: 100%;
+		overflow-wrap: break-word;
 	}
 
 	.post_image_content
@@ -989,6 +1033,17 @@
 		overflow-y: scroll;
 	}
 
+	.post_like_comment_container::-webkit-scrollbar 
+	{ 
+	    display: none;  // Safari and Chrome
+	}		
+
+	.post_time
+	{
+		color: grey;
+		font-size: 80%;
+	}
+
 	.post_liked_user_div
 	{
 		padding: 3px;
@@ -1015,7 +1070,7 @@
 
 	.post_comment_time
 	{
-		font-size: 80%;
+		font-size: 70%;
 		color: grey;
 	}
 
@@ -1238,8 +1293,9 @@
 		border: none;
 		margin:0;
 		padding: 0;
-		padding: 5px;
+		padding: 20px;
 		margin: auto;
+		width: 100%;
 	}
 
 	.upload_pic_feed
@@ -1260,6 +1316,11 @@
 		height: 30%;
 		margin: auto;
 		display: block;
+	}
+
+	.upload_ins
+	{
+		text-align: left;
 	}
 
 /*---ajax loading div---*/
@@ -1365,6 +1426,28 @@
 	.post_ajax_content .post_div
 	{
 		width: 80%;
+	}
+
+/*-----warning ajax box-------*/
+	.warn_box
+	{
+		position: fixed;
+		top: 45%;
+		left: 0;
+		right: 0;
+		margin: auto;
+		background: #00cc44;
+		padding: 10px;
+		width: 50%;
+		box-shadow: 0px 0px 5px black;
+		border: 5px white solid;
+		color: white;
+		font-size: 110%;
+		text-align: center;
+		border-radius: 3px;
+		z-index: 205;
+
+		display: none;
 	}
 
 /*-----footer-----*/
@@ -1540,7 +1623,6 @@
 			border-radius: 0px;
 		}
 
-
 	/*---------header bar----*/
 		.header_bar
 		{
@@ -1616,14 +1698,14 @@
 		.user_banner
 		{
 			height: 200px;
-			//margin-top: 48px;
 			text-align: center;
 		}
 
 		.user_dp
 		{
 			height: 150px;
-			//width: 200px;
+			width: 150px;
+			object-fit: cover;
 		}
 
 		.user_post
@@ -1656,6 +1738,11 @@
 			width:40%;
 			display: inline-block;
 			text-align: center;
+		}
+
+		.user_people_div
+		{
+			width: 90%;
 		}
 
 	/*--------user photos------*/
@@ -1717,11 +1804,26 @@
 			width: 95%;
 			margin: auto;
 			margin-bottom: 10px;
+
+			margin-top: -30px;
+			opacity: 0;
+			transition: 1s;
+		}
+
+		.post_div_entry
+		{
+			opacity: 1;
+			margin-top: 0px;
 		}
 
 		.post_comment_container
 		{
 			height: 180px;
+		}
+
+		.post_text_content
+		{
+			font-size: 98%;
 		}
 
 	/*--ajax loading div---*/
@@ -1742,6 +1844,11 @@
 			width: 95%;
 		}	
 
+		.warn_box
+		{
+			width: 80%;
+		}
+	
 	/*---for setting page----*/
 		.setting_name_done_button, .setting_about_done_button, .setting_bio_done_button, .setting_nick_done_button, .setting_sex_done_button, .setting_dob_done_button, .setting_lang_done_button, .setting_web_done_button, .setting_address_done_button
 		{

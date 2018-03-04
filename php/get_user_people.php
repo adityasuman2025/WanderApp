@@ -29,12 +29,12 @@
 			$about_user_dp = $fetch_user_about_assoc['dp'];
 
 			$dp_location =  "img/". $people_username . "_photo/" . $about_user_dp;
-			$actual_link = "http://$_SERVER[HTTP_HOST]/user.php?people_username=$people_username";
+			$actual_link = "http://$_SERVER[HTTP_HOST]/user.php?username=$people_username";
 						
-			echo "	<div class=\"user_people_div\">
+			echo "	<a target=\"_blank\" href=\"$actual_link\" class=\"user_people_div\">
 						<img src=\"$dp_location\" onerror=\"this.onerror=null;this.src='img/def_user_dp.jpg';\"/>
 						&nbsp
-						<a target=\"_blank\" href=\"$actual_link\">$about_user_name</a>
+						<span>$about_user_name</span>
 						&nbsp";
 
 						if($user_what_people == "block")
@@ -42,7 +42,7 @@
 							echo "<img blocked_username= \"$people_username\" class= \"remove_people_block_button\" src=\"img/remove.png\">";
 						}
 
-			echo "		</div>";
+			echo "	</a>";
 
 		}
 	}

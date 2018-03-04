@@ -8,6 +8,11 @@
 <br>
 <div class="upload_pic_feed"></div>
 
+<ul class="upload_ins">
+	<li>Image size must be less than 1 MB.</li>
+	<li>Video size must be less than 20 MB.</li>
+</ul>
+
 <button class="upload_done">Done</button>
 
 
@@ -54,6 +59,8 @@
 							$('.upload_pic_feed').html(data);
 
 							$('#file').fadeOut(0);
+							$('.upload_ins').fadeOut(0);
+
 							$('.upload_done').fadeIn(0);
 						}
 					});

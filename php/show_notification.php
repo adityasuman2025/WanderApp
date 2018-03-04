@@ -125,19 +125,21 @@
 	<script type="text/javascript">
 		$('.accepted_rqst_button').click(function()
 		{
-			$('.ajax_loading_bckgrnd').fadeIn(500);
-			$('.post_ajax_loading_div').fadeIn(500);
+			// $('.ajax_loading_bckgrnd').fadeIn(500);
+			// $('.post_ajax_loading_div').fadeIn(500);
 
-			$('.ajax_loading_div').fadeOut(500);
-			$('.notif_ajax_loading_div').fadeOut(500);
+			// $('.ajax_loading_div').fadeOut(500);
+			// $('.notif_ajax_loading_div').fadeOut(500);
 
-			var post_id = parseInt($(this).attr('post_id'));
+			// var get_unique_post_query = "SELECT * FROM " + signed_username + "_post WHERE id = " + post_id;
+			// $.post('php/get_unique_post.php', {get_unique_post_query: get_unique_post_query}, function(e)
+			// {
+			// 	$('.post_ajax_content').html(e);
+			// });
+
+			var this_post_id = parseInt($(this).attr('post_id'));
 			var signed_username = "<?php echo $signed_username; ?>";
 
-			var get_unique_post_query = "SELECT * FROM " + signed_username + "_post WHERE id = " + post_id;
-			$.post('php/get_unique_post.php', {get_unique_post_query: get_unique_post_query}, function(e)
-			{
-				$('.post_ajax_content').html(e);
-			});
+			window.location.href = "post_view.php?username=" + signed_username + "&post_id=" + this_post_id;
 		});
 	</script>

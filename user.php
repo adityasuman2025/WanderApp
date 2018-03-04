@@ -281,15 +281,6 @@
 <!--------scripts---------->
 	<script type="text/javascript">
 
-		$('.close_window').click(function()
-		{
-			// win = window.open("","win");  url = "" or "about:blank"; target="_self" 
-			// win.close();
-			//self.close();
-			//window.top.close();
-		});
-
-
 	/*----top user banner and header bar animation---------*/
 		$(window).scroll(function()
 		{
@@ -297,6 +288,14 @@
 			$('.user_banner img').css('top', win_pos  + 'px');
 		});
 
+	/*-----entering animations-----*/
+		$(window).ready(function()
+		{
+			$('.user_info').addClass('user_info_entry');
+			$('.user_option_post').addClass('user_option_post_entry');
+		});
+
+		
 	/*------on clicking on login header button-------*/
 		$('.post_login_button').click(function()
 		{
@@ -641,8 +640,8 @@
 		var query_to_send = "SELECT id FROM " + username + "_post";
 
 		start = 0;
-		limit = 8;
-		org_limit = 8;
+		limit = 10;
+		org_limit = 10;
 
 		$.post('php/get_user_post_count.php', {query_to_send: query_to_send}, function(data)
 		{
@@ -666,6 +665,9 @@
 			{
 				$('.load_more_post').fadeIn(0);
 			}
+		
+			post_div_count = $('.post_container').find('.post_div').length;
+			
 		});
 
 	/*-------on clicking on load more of user post-----------*/
@@ -681,6 +683,8 @@
 				$('.post_container').html(e);
 				user_post_content_no = $('.post_container .post_div').length;
 
+				$('.post_container .post_div').addClass('post_div_entry');
+
 				if(user_post_content_no >= user_post_count)
 				{
 					$('.load_more_post').fadeOut(0);
@@ -693,6 +697,18 @@
 			}
 		});
 
+	/*----entering animation of post divs-------*/
+		$(window).scroll(function()
+		{
+			var post_container_pos = $('.post_container').offset().top/1.7;
+			var scroll_pos = $(this).scrollTop();
+
+			if(scroll_pos > post_container_pos)
+			{
+				$('.post_div').addClass('post_div_entry');
+			}
+		});
+		
 	</script>
 
 </body>
