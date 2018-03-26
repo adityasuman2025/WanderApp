@@ -12,9 +12,9 @@
 	$registration_query = "INSERT INTO users VALUES('','$name_reg', '$us_name_reg', '$email_reg','$mob_reg','$pass_reg')";
 	$user_info_entry_query = "INSERT INTO users_info VALUES('','$name_reg', '$us_name_reg', '','dp.0.jpg','cover.0.jpg', '', '', '', '', '' ,'', '')";
 	
-	$create_info_table = "CREATE TABLE " . $us_name_reg . "_info (id INT(255) AUTO_INCREMENT PRIMARY KEY, bucket VARCHAR(100), passion VARCHAR(100), travel VARCHAR(100), comp VARCHAR(100), block VARCHAR(100), comp_rqst VARCHAR(100))";
+	$create_info_table = "CREATE TABLE " . $us_name_reg . "_info (id INT(255) AUTO_INCREMENT PRIMARY KEY, bucket VARCHAR(100), passion VARCHAR(100), travel VARCHAR(100), comp VARCHAR(100), block VARCHAR(100), comp_rqst VARCHAR(100), fvrt_post_id VARCHAR(100))";
 	$create_media_table = "CREATE TABLE " . $us_name_reg . "_media (id INT(255) AUTO_INCREMENT PRIMARY KEY, photo VARCHAR(100), photo_time DATE, photo_location VARCHAR(100), video VARCHAR(100), video_time DATE, video_location VARCHAR(100))";
-	$create_post_table = "CREATE TABLE " . $us_name_reg . "_post (id INT(255) AUTO_INCREMENT PRIMARY KEY, text VARCHAR(10000), photo VARCHAR(100), video VARCHAR(100), location VARCHAR(100), time DATE)";
+	$create_post_table = "CREATE TABLE " . $us_name_reg . "_post (id INT(255) AUTO_INCREMENT PRIMARY KEY, text VARCHAR(10000), photo VARCHAR(100), video VARCHAR(100), location VARCHAR(100), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 	$create_message_table = "CREATE TABLE " . $us_name_reg . "_message (id INT(255) AUTO_INCREMENT PRIMARY KEY, message_by VARCHAR(100), message VARCHAR(10000), time timestamp, view VARCHAR(10))";
 	
 	// $create_photo_table = "CREATE TABLE " . $us_name_reg . "_photo (id INT(255) AUTO_INCREMENT PRIMARY KEY, photo VARCHAR(100), time DATE, location VARCHAR(100))";

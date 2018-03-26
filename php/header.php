@@ -17,7 +17,9 @@
 	<!----header title---->
 		<div class="header_title_div">
 			<img src="img/logo.png" class="header_logo"/>
-			<span class="header_logo_text">Travel Diaries</span>
+			<span class="header_logo_text">
+				<?php echo $location_array['time_zone']; ?>
+			</span>
 		</div>
 
 	<!----header icon---->
@@ -28,15 +30,32 @@
 					$signed_username = $_COOKIE['signed_username'];
 
 					echo "
-							<img src=\"img/header/home.png\" class=\"header_home\">
+							<a href=\"home.php\"><img src=\"img/header/home.png\" class=\"header_home\"></a>
 							<a href=\"user.php?username=" . $_COOKIE['signed_username'] . "\"><img src=\"img/header/profile.png\" class=\"header_profile\"></a>
-							<img src=\"img/header/msg.png\" class=\"header_msg\">
-							<img src=\"img/header/notify.png\" class=\"header_notify\">
-							<img src=\"img/header/setting.png\" class=\"header_setting\">";
-				}
-				else
-				{
-					//echo "<a class=\"header_login_button\" href=\"index.php\">Login</a>";
+							<img src=\"img/header/msg.png\" class=\"header_msg\">";
+
+				//checking any new notification 
+					$check_new_notification_query = "SELECT id FROM user_notifications WHERE view =  1 AND notifi_user = '$signed_username'";
+					$check_new_notification_query_run = mysqli_query($connect_link, $check_new_notification_query);
+					$check_new_notification_no = mysqli_num_rows($check_new_notification_query_run);
+
+				//checking any new companion rqst
+					$check_new_rqst_query = "SELECT id FROM " . $signed_username . "_info WHERE comp_rqst != ''";
+					$check_new_rqst_query_run = mysqli_query($connect_link, $check_new_rqst_query);
+					$check_new_rqst_no = mysqli_num_rows($check_new_rqst_query_run);
+
+					$check_new_notification_no = $check_new_notification_no + $check_new_rqst_no;
+
+					if($check_new_notification_no == 0)
+					{
+						echo "<img src=\"img/header/notify.png\" class=\"header_notify\">";
+					}
+					else
+					{
+						echo "<img src=\"img/header/notify_new.png\" class=\"header_notify\">";
+					}
+
+					echo "	<img src=\"img/header/setting.png\" class=\"header_setting\">";
 				}
 			?>
 		</div>
@@ -48,13 +67,36 @@
 		<?php
 			if(isset($_COOKIE['signed_username']))
 			{
-				echo "
-						<img src=\"img/header/home.png\" class=\"header_home\">
-						<a href=\"user.php?username=" . $_COOKIE['signed_username'] . "\"><img src=\"img/header/profile.png\" class=\"header_profile\"></a>
-						<img src=\"img/header/msg.png\" class=\"header_msg\">
-						<img src=\"img/header/notify.png\" class=\"header_notify\">
-						<img src=\"img/header/setting.png\" class=\"header_setting\">
-						<img src=\"img/header/chat.png\" mob_chat_switch=\"on\" class=\"header_chat\">
+				$signed_username = $_COOKIE['signed_username'];
+
+					echo "	<a href=\"home.php\"><img src=\"img/header/home.png\" class=\"header_home\"></a>
+							<a href=\"user.php?username=" . $_COOKIE['signed_username'] . "\"><img src=\"img/header/profile.png\" class=\"header_profile\"></a>
+							<img src=\"img/header/msg.png\" class=\"header_msg\">";
+
+				//checking any new notification 
+					$check_new_notification_query = "SELECT id FROM user_notifications WHERE view =  1 AND notifi_user = '$signed_username'";
+					$check_new_notification_query_run = mysqli_query($connect_link, $check_new_notification_query);
+					$check_new_notification_no = mysqli_num_rows($check_new_notification_query_run);
+
+				//checking any new companion rqst
+					$check_new_rqst_query = "SELECT id FROM " . $signed_username . "_info WHERE comp_rqst != ''";
+					$check_new_rqst_query_run = mysqli_query($connect_link, $check_new_rqst_query);
+					$check_new_rqst_no = mysqli_num_rows($check_new_rqst_query_run);
+
+					$check_new_notification_no = $check_new_notification_no + $check_new_rqst_no;
+					
+					if($check_new_notification_no == 0)
+					{
+						echo "<img src=\"img/header/notify.png\" class=\"header_notify\">";
+					}
+					else
+					{
+						echo "<img src=\"img/header/notify_new.png\" class=\"header_notify\">";
+					}
+
+					echo "	<img src=\"img/header/setting.png\" class=\"header_setting\">";
+
+					echo "	<img src=\"img/header/chat.png\" mob_chat_switch=\"on\" class=\"header_chat\">
 					";
 			}
 			else

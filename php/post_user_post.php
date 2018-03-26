@@ -85,12 +85,31 @@
 		$post_video = null;
 	}
 
-//upadting the user_post table
+//updating the user_post table and adding new row in likes and notification table for that post
 	$post_user_pos_query = "INSERT INTO " . $signed_username . "_post VALUES('', '" . $post_textarea . "', '" . $post_photo . "', '" . $post_video . "', '" . $post_location . "', now())";
 
 	if($post_user_pos_query_run = mysqli_query($connect_link, $post_user_pos_query))
 	{
 		echo 1;
+			
+	//getting post id of this post
+		$get_post_id_query = "SELECT id FROM " . $signed_username . "_post ORDER BY id DESC";
+		$get_post_id_query_run = mysqli_query($connect_link, $get_post_id_query);
+		$get_post_id_query_run_assoc = mysqli_fetch_assoc($get_post_id_query_run);
+		$post_id = $get_post_id_query_run_assoc['id'];
+
+	//adding a new row for that post in likes table
+		// $add_post_likes_row_query = "INSERT INTO likes VALUES('', '" . $signed_username . "', '" . $signed_username . "_post_" . $post_id . "', '', now())";
+		// $add_post_likes_row_query_run = mysqli_query($connect_link, $add_post_likes_row_query);
+			
+	//adding a new row for likes of that post in notification table
+		$add_post_likes_for_notify_query = "INSERT INTO user_notifications VALUES('', '$signed_username', 'like', '$post_id', '', 'have liked your post', now(), '0')";
+		$add_post_likes_for_notify_query_run = mysqli_query($connect_link, $add_post_likes_for_notify_query);
+
+	//adding a new row for comments of that post in notification table
+		$add_post_likes_for_notify_query = "INSERT INTO user_notifications VALUES('', '$signed_username', 'comment', '$post_id', '', 'have commented on your post', now(), '0')";
+		$add_post_likes_for_notify_query_run = mysqli_query($connect_link, $add_post_likes_for_notify_query);
+
 	}
 	else
 	{

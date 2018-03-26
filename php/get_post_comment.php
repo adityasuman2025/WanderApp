@@ -74,7 +74,7 @@
 			}
 		//for getting time passed since post
 
-			$fetch_user_info_query = "SELECT * FROM users_info WHERE username = '" . $get_post_comment_username . "'";
+			$fetch_user_info_query = "SELECT name FROM users_info WHERE username = '" . $get_post_comment_username . "'";
 			$fetch_user_info_query_run = mysqli_query($connect_link, $fetch_user_info_query);
 
 			$fetched_users = mysqli_num_rows($fetch_user_info_query_run);
@@ -83,10 +83,11 @@
 			{
 				$fetch_user_info_assoc = mysqli_fetch_assoc($fetch_user_info_query_run);
 				$user_name = $fetch_user_info_assoc['name'];
-				
+				$actual_link = "http://$_SERVER[HTTP_HOST]/user.php?username=$get_post_comment_username";
+							
 				echo "	<div class=\"post_comment_user_div\"> 
 							<img src=\"img/comment.png\"/> 
-							$user_name
+							<a href=\"$actual_link\">$user_name</a>
 
 							&nbsp &nbsp
 							<span class=\"post_comment_time\">

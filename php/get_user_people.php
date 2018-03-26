@@ -31,7 +31,7 @@
 			$dp_location =  "img/". $people_username . "_photo/" . $about_user_dp;
 			$actual_link = "http://$_SERVER[HTTP_HOST]/user.php?username=$people_username";
 						
-			echo "	<a target=\"_blank\" href=\"$actual_link\" class=\"user_people_div\">
+			echo "	<a href=\"$actual_link\" class=\"user_people_div\">
 						<img src=\"$dp_location\" onerror=\"this.onerror=null;this.src='img/def_user_dp.jpg';\"/>
 						&nbsp
 						<span>$about_user_name</span>

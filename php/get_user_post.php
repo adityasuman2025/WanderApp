@@ -209,7 +209,6 @@
 						<div class=\"post_like_comment_container\"></div>
 					</div>
 				</div>";
-
 		}
 	}
 	else
@@ -316,4 +315,18 @@
 		window.location.href = "post_view.php?username=" + username + "&post_id=" + this_post_id;
 	});
 
+//on clicking on add fvrt button
+	$('.post_fav_button').click(function()
+	{
+		var this_post = $(this).parent().parent().parent();
+		var this_post_id = $.trim(this_post.find('.post_id').text());
+		var username = $.trim("<?php echo $username; ?>");
+
+		var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '', '', '', '" + this_post_id + "')";
+		
+		$.post('php/change_setting.php', {query_to_send: query_to_send}, function()
+		{
+			location.reload();
+		});
+	});
 </script>

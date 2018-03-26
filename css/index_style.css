@@ -33,6 +33,9 @@ html, body
 		left:0;
 		right:0;
 		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
 	}
 
 	.row
@@ -157,4 +160,18 @@ html, body
 	{
 		font-size: 120%;
 		color: #00cc44;
+	}
+
+	
+/*--------media queries for less than 800px----------*/
+	@media screen and (max-width: 800px)
+	{
+		.index_banner
+		{
+			height: 200px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		
 	}

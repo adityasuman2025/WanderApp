@@ -180,7 +180,7 @@
 
 											if($user_passion != "")
 											{
-												echo "<li><img src=\"img/passion1.png\"> $user_passion</li>";
+												echo "<li><img src=\"img/passion.png\"> $user_passion</li>";
 											}
 											
 										}

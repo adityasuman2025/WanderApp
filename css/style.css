@@ -278,6 +278,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: top;
 	}
 
 	.user_name
@@ -295,13 +296,20 @@
 		font-weight: bold;
 	}
 
+	.user_name span
+	{
+		font-size: 65%;
+		font-weight: normal;
+		color: lightgrey;
+	}
+
 	.user_info
 	{
 		padding: 0;
 		margin:0;
 		text-align: center;
 		background: white;
-		box-shadow: 0px 0px 1px grey;
+		//box-shadow: 0px 0px 1px grey;
 
 		left: -50px;
 		opacity: 0;
@@ -421,8 +429,8 @@
 	{
 		padding: 0;
 		margin: 0;
-		padding-left: 10px;
-		padding-right: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
 
 		right: -50px;
 		opacity: 0;
@@ -437,10 +445,8 @@
 
 	.user_option
 	{
-		background: white;
-		box-shadow: 0px 0px 1px grey;
-		text-align: center;
 		margin: auto;
+		text-align: center;
 	}
 
 	.user_option ul
@@ -448,17 +454,18 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-
 	}
 
 	.user_option li
 	{
-		width:24%;
-		//background: grey;
+		text-align: left;
+		background: white;
 		padding: 8px;
-		display: inline-block;
+		margin: 5px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 1px lightgrey;
+
 		font-size: 120%;
-		font-weight: bold;
 		cursor: pointer;
 	}
 
@@ -492,6 +499,8 @@
 		display: block;
 		
 		height: 100%; 
+		width: 100%;
+		object-fit: contain;
 	}
 
 	#frame_arrow1
@@ -576,13 +585,14 @@
 /*----user post--------*/
 	.user_post
 	{
-		margin-top: 50px;
+		//margin-top: 50px;
 		overflow: hidden;
 	}
 
 	.post_textarea_thumbnail
 	{
 		width: 100%;
+		overflow: hidden;
 	}
 
 	.post_textarea
@@ -599,20 +609,26 @@
 	.post_thumbnail
 	{
 		margin: 0;
+		padding: 0;
 		height: 180px;
 		background-color: white;
 		text-align: center;
 		display: none;
+		overflow: hidden;
 	}
 
 	.post_thumbnail img
 	{
 		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.post_thumbnail video
 	{
 		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.post_option
@@ -667,6 +683,82 @@
 		font-size: 110%;
 		color: white;
 	}
+
+/*------user favourite---------*/
+	.more_fvrt_button
+	{
+		background: none;
+		border: none;
+		color: #00cc44;
+		float: right;
+		font-size: 110%;
+	}
+
+	.user_fvrt_area
+	{
+		background: white;
+		border-radius: 5px;
+		//padding: 5px;
+	}
+
+	.fvrt_post_container
+	{
+		display: inline-block;
+		width: 22%;
+		margin: 1%;
+		position: relative;
+		box-shadow: 0px 0px .3px grey;
+	}
+
+	.fvrt_post_div
+	{
+		width: 100%;
+		height: 180px;
+		vertical-align: top;
+		overflow: hidden;
+		cursor: pointer;
+	}
+
+	.fvrt_post_div img
+	{
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+	}
+
+	.fvrt_post_div video
+	{
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+	}
+	
+	.fvrt_remove_button
+	{
+		width: 38px;
+		height: 38px;
+		border:none;
+		padding:0;
+		margin:0;
+		background: none;
+		padding: 5px;
+		position: absolute;
+		right: 2px;
+		top: 2px;
+		z-index: 10;
+	}
+
+	.fvrt_remove_button img
+	{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+
+		padding: 2px;
+		border-radius: 50%;
+		box-shadow: 0px 0px 5px grey;
+		background: white;
+	}	
 
 /*--------user about--------*/
 	.user_about
@@ -882,7 +974,7 @@
 
 	.post_div
 	{
-		width: 45%;
+		width: 50%;
 		background: white;
 		box-shadow: 0px 0px 1px grey;
 		margin: 0;
@@ -1063,6 +1155,12 @@
 		font-weight: bold;
 	}
 
+	.post_comment_user_div a, .post_comment_user_div a:hover
+	{
+		text-decoration: none;
+		color: black;
+	}
+
 	.post_comment_user_div img
 	{
 		height: 25px;
@@ -1093,6 +1191,7 @@
 	.add_comment_div div
 	{
 		text-align: left;
+		font-weight: bold;
 	}
 
 	.add_comment_div img
@@ -1102,22 +1201,21 @@
 	
 	.add_comment_div textarea
 	{
-		width: 92%;
+		width: 100%;
 		height: 60px;
 		border: 1px lightgrey solid;
 		border-radius: 3px;
 		resize: none;
-		margin-left: 6%;
+		margin-left: 0%;
 	}
 
 	.add_comment_div button
 	{
 		background: #00cc44;
-		margin:0;
+		margin: 5px;
 		border: none;
 		color: white;
 		border-radius: 3px;
-
 		padding: 5px;
 	}
 
@@ -1456,6 +1554,130 @@
 		background: red;
 	}
 
+/*------home page--------*/
+/*----companion suggestion div-------*/
+	.comp_sug_div
+	{
+		position: fixed;
+		right:0;
+		top: 45px;
+		height: 100%;
+		width: 20%;
+		overflow-y: scroll;
+		background: yellow;
+	}
+
+	.comp_sug_div::-webkit-scrollbar 
+	{ 
+	    display: none;  // Safari and Chrome
+	}	
+
+	.feed_container
+	{
+		width: 60%;
+		position: absolute;
+		top: 45px;
+		left: 20%;
+		padding: 10px;
+		background: none;
+	}
+
+	.feed_post_div
+	{
+		width: 70%;
+		margin: auto;
+		margin-bottom: 20px;
+		box-shadow: 0px 0px 1px grey;
+		background: white;
+	}
+
+	.travel_tool_div
+	{
+		position: fixed;
+		left: 10px;
+		top: 0px;
+		height:100%;
+		width: 20%;
+	}
+
+/*----travel tool area-------*/
+	.travel_tool_from
+	{
+		margin-top: 60px;
+		background: white;
+		border-radius: 10px;
+		padding: 10px;
+		text-align: center;
+	}
+
+	.travel_tool_header
+	{
+		font-size: 135%;
+		color: #00cc44;
+		font-weight: bold;
+	}
+
+	.place_input
+	{
+		margin: 5px;
+		height: 30px;
+		width: 80%;
+		padding: 3px;
+		border:none;
+		border-radius: 4px;
+		box-shadow: 0px 0px 2px grey;
+	}
+
+	.place_search_button
+	{
+		background: #00cc44;
+		border: none;
+		border-radius: 5px;
+		color: white;
+		width: 80px;
+		padding: 5px;
+		font-size: 115%;
+	}
+
+	.travel_tool_searches
+	{
+		height: 70%;
+		width: 100%;
+		margin-top: 10px;
+		background: white;	
+		border-radius: 10px;
+		padding: 10px;
+		overflow-y: scroll;
+	}
+
+	.travel_tool_searches::-webkit-scrollbar 
+	{ 
+	    display: none;  // Safari and Chrome
+	}	
+
+	.travel_tool_searches p
+	{
+		font-size: 115%;
+		font-weight: normal;
+		//border-bottom: 2px grey solid;
+	}
+	
+	.travel_tool_searches a, .travel_tool_searches a:hover
+	{
+		text-decoration: none;
+		color: #333333;
+	}
+
+	.last_searched_div
+	{
+		margin-left: 5%;
+	}
+
+	.trend_searched_div
+	{
+		margin-left: 5%;
+	}
+
 /*------notification page----------*/
 	.notification_button
 	{
@@ -1487,14 +1709,19 @@
 
 	.comp_rqst_user_div
 	{
-		padding: 3px;
-		box-shadow: 0px 0px 3px grey;
-		margin: 6px;
+		padding: 5px;
+		//box-shadow: 0px 0px 1px grey;
+		margin: 3px;
+		background: #f1f1f1;
 	}
 
 	.comp_rqst_user_div img
 	{
-		height: 35px;
+		height: 50px;
+		width: 50px;
+		object-fit: cover;
+		border-radius: 50%;
+
 		vertical-align: middle;
 	}
 
@@ -1542,7 +1769,8 @@
 
 	.accepted_rqst_div
 	{
-		padding: 10px;
+		padding-left: 5px;
+		padding-bottom: 10px;
 	}
 
 	.accepted_rqst_div button
@@ -1557,7 +1785,10 @@
 
 	.accepted_rqst_div img
 	{
-		height: 30px;
+		height: 40px;
+		width: 40px;
+		object-fit: cover;
+		border-radius: 50%;
 	}
 
 	.accepted_rqst_div a
@@ -1567,11 +1798,19 @@
 		text-decoration: none;
 	}
 
+	.accepted_rqst_div a span
+	{
+		font-weight: normal;
+		color: black;
+		text-decoration: none;
+	}
+
 	.notification_time
 	{
 		text-align: right;
 		font-size: 80%;
 		color: grey;
+		float: right;
 	}
 
 /*--------media queries for less than 800px----------*/
@@ -1584,6 +1823,11 @@
 			margin:0;
 			margin-top: 5px;
 			margin-bottom: 30px;
+		}
+
+		.user_name
+		{
+			padding-left: 10px;
 		}
 
 	/*------chat box----------*/
@@ -1649,7 +1893,7 @@
 			left:0;
 			width:100%;
 			text-align: center;
-			height: 40px;
+			height: 45px;
 			background: #00cc44;
 		}
 
@@ -1730,6 +1974,15 @@
 			padding: 10px;
 		}
 
+		.user_option li
+		{
+			box-shadow: 0px 0px 0px grey;
+
+			display: inline-block;
+			margin: 0;
+			border-radius: 5px;
+		}
+
 		.user_tab li
 		{
 			margin: 10px;
@@ -1796,6 +2049,84 @@
 			left:0;
 			width: 100%;
 			height: 30px;
+		}
+
+	/*------user favourite---------*/
+		.user_fvrt_area
+		{
+			background: white;
+			border-radius: 5px;
+			//padding: 2px;
+			text-align: center;
+		}
+
+		.fvrt_post_container
+		{
+			display: inline-block;
+			width: 45%;
+			margin: 1%;
+			position: relative;
+		}
+
+		.fvrt_post_div
+		{
+			width: 100%;
+			height: 120px;
+			vertical-align: top;
+			overflow: hidden;
+			cursor: pointer;
+		}
+
+		.fvrt_post_div img
+		{
+			width: 100%;
+			height: 120px;
+			object-fit: cover;
+		}
+
+		.fvrt_post_div video
+		{
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+	/*------home page--------*/
+	/*----companion suggestion div-------*/
+		.comp_sug_div
+		{
+			position: relative;
+			right: none;
+			top: 45px;
+			height: 200px;
+			width: 100%;
+			overflow-y: hidden;
+			overflow-x: scroll;
+			background: yellow;
+		}
+
+		.travel_tool_div
+		{
+			display: none;
+		}
+		
+		.feed_container
+		{
+			width: 100%;
+			margin-bottom: 50px;
+			position: relative;
+			top: none;
+			left: 0px;
+			padding: 10px;
+		}
+
+		.feed_post_div
+		{
+			width: 95%;
+			margin: auto;
+			margin-bottom: 20px;
+			box-shadow: 0px 0px 1px grey;
+			background: white;
 		}
 
 	/*----post container------*/

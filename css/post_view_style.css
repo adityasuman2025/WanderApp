@@ -26,9 +26,10 @@ html, body
 
 .view_post_image_content, .view_post_video_content
 {
+	background: black;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .view_post_text_content
@@ -236,7 +237,7 @@ html, body
 	.add_comment_div
 	{
 		padding: 5px;
-		background: rgba(255,255,255,.1);
+		//background: rgba(255,255,255,.1);
 		margin: 5px;
 		border-radius: 5px;
 		text-align: right;
@@ -255,12 +256,12 @@ html, body
 
 	.add_comment_div textarea
 	{
-		width: 92%;
+		width: 100%;
 		height: 60px;
 		border: none;
 		border-radius: 3px;
 		resize: none;
-		margin-left: 6%;
+		margin-left: 0%;
 
 		background: rgba(255,255,255, .5);
 	}
@@ -268,7 +269,7 @@ html, body
 	.add_comment_div button
 	{
 		background: #00cc44;
-		margin:0;
+		margin: 5px;
 		border: none;
 		color: white;
 		border-radius: 3px;
@@ -351,7 +352,7 @@ html, body
 
 	.add_comment_div
 	{
-		background: lightgrey;
+		//background: lightgrey;
 	}
 
 	.view_post_text_content

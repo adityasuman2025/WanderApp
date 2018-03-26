@@ -48,12 +48,12 @@
 		var username = $(this).attr('text');
 		var signed_username = "<?php echo $signed_username; ?>";
 
-		var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '" + username + "', '', '')";
+		var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '" + username + "', '', '', '')";
 		$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 		{
 			if(e == 1)
 			{
-				var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '" + signed_username + "', '', '')";
+				var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '" + signed_username + "', '', '', '')";
 				$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 				{
 					if(e == 1)
@@ -64,7 +64,7 @@
 							if(e == 1)
 							{
 							//adding this event in notification table
-								var add_notification_query = "INSERT INTO user_notifications VALUES('', '" + username + "', 'companion', '', '" + signed_username + "', 'has accepted your companion request', now())";
+								var add_notification_query = "INSERT INTO user_notifications VALUES('', '" + username + "', 'companion', '', '" + signed_username + "', 'has accepted your companion request', now(), '1')";
 
 								$.post('php/add_notification.php', {add_notification_query: add_notification_query}, function(data)
 								{
@@ -116,4 +116,5 @@
 				}
 			});
 		});
+	
 </script>

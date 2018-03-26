@@ -803,7 +803,7 @@
 				}
 				else
 				{
-					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '" + setting_bucket_input + "', '', '', '', '', '')";
+					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '" + setting_bucket_input + "', '', '', '', '', '', '')";
 					$.post('php/change_setting.php', {query_to_send: query_to_send}, function(e)
 					{
 						if(e=='1')
@@ -868,7 +868,7 @@
 				}
 				else
 				{
-					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '" + setting_passion_input + "', '', '', '', '')";
+					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '" + setting_passion_input + "', '', '', '', '', '')";
 					$.post('php/change_setting.php', {query_to_send: query_to_send}, function(e)
 					{
 						if(e=='1')
@@ -934,7 +934,7 @@
 				}
 				else
 				{
-					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '" + setting_trip_input + "', '', '', '')";
+					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '" + setting_trip_input + "', '', '', '', '')";
 					$.post('php/change_setting.php', {query_to_send: query_to_send}, function(e)
 					{
 						if(e=='1')

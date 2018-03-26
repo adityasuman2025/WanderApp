@@ -25,7 +25,7 @@
 		//checking if this username is blocked by signed user?
 			$check_block_query1 = "SELECT id FROM " . $username . "_info WHERE block = '" . $signed_username . "'";
 			$check_block_query_run1 = mysqli_query($connect_link, $check_block_query1);
-			$check_block1 = mysqli_num_rows($check_block_query_run1);
+			$check_block1 = @mysqli_num_rows($check_block_query_run1);
 			if($check_block1 >= 1)
 			{
 				die("<div class=\"blocked_alert\">This profile has blocked you.</div>");
@@ -81,13 +81,13 @@
 			$cover_location =  "img/". $username . "_photo/" . $user_cover;
 			echo "<img src=\"$cover_location\" onerror=\"this.onerror=null;this.src='img/def_user_cover.jpg';\"/>";
 		?>
-		<div class="user_name"><?php echo $user_name ?></div>
+		<div class="user_name"><?php echo $user_name ?> <span>@<?php echo $username; ?></span></div>
 	</div>
 
 <!---------body div---------->
 <div class="body_div">
 
-<!----user option and intro and post---->
+<!----user option, intro, fvrt and post---->
 	<div class="row option_intro_div">
 
 	<!---------user intro-------->
@@ -135,7 +135,7 @@
 
 									if($user_passion != "")
 									{
-										echo "<li><img src=\"img/passion1.png\"> $user_passion</li>";
+										echo "<li><img src=\"img/passion.png\"> $user_passion</li>";
 									}
 											
 								}
@@ -168,19 +168,23 @@
 
 		</div>
 
-	<!---------user option and post-------->
+	<!---------user option and post and favourite-------->
 		<div class="col-xs-12 col-md-9 user_option_post">
 			
-			<div class="user_option">
-				<ul>
-					<li class="user_people_button">People</li>
-					<li class="user_photo_button">Photos</li>
-					<li class="user_video_button">Videos</li>
-					<li class="user_about_button">About</li>
-				</ul>
-			</div>
+			<div class="row">
 
-			<div class="user_post">		
+			<!---------user option area-------->
+				<div class="user_option col-xs-12 col-md-3">
+					<ul>
+						<li class="user_people_button">People</li>
+						<li class="user_photo_button">Photos</li>
+						<li class="user_video_button">Videos</li>
+						<li class="user_about_button">About</li>
+					</ul>
+				</div>
+
+			<!---------user post area-------->
+				<div class="user_post col-xs-12 col-md-9">		
 				<?php
 					if($username == $signed_username)
 					{
@@ -248,8 +252,15 @@
 						echo "<button class=\"post_login_button\">Login / Register</button>";
 					}
 				?>			
+				</div>
+
 			</div>
 
+		<!-------user favourite---------->
+			<br>
+			<div class="user_fvrt_area"></div>
+
+			<!-- <button class="more_fvrt_button">more favourites</button> -->
 		</div>
 
 	</div>
@@ -295,11 +306,18 @@
 			$('.user_option_post').addClass('user_option_post_entry');
 		});
 
-		
 	/*------on clicking on login header button-------*/
 		$('.post_login_button').click(function()
 		{
 			$(location).attr('href', 'index.php');
+		});
+
+	//for getting user favourite posts
+		var username = "<?php echo $username; ?>";
+		
+		$.post('php/get_fvrt_post.php', {username: username}, function(e)
+		{
+			$('.user_fvrt_area').html(e);
 		});
 
 	//ajax on user ajax
@@ -404,7 +422,7 @@
 			var username = "<?php echo $username; ?>";
 			var signed_username = "<?php echo $signed_username; ?>";
 
-			var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '', '', '" + signed_username + "')";
+			var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '', '', '" + signed_username + "', '')";
 			$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 			{
 				if(e == 1)
@@ -464,12 +482,12 @@
 			var username = "<?php echo $username; ?>";
 			var signed_username = "<?php echo $signed_username; ?>";
 
-			var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '" + username + "', '', '')";
+			var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '" + username + "', '', '', '')";
 			$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 			{
 				if(e == 1)
 				{
-					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '" + signed_username + "', '', '')";
+					var query_to_send = "INSERT INTO " + username + "_info VALUES('', '', '', '', '" + signed_username + "', '', '', '')";
 					$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 					{
 						if(e == 1)
@@ -507,7 +525,7 @@
 			var signed_username = "<?php echo $signed_username; ?>";
 
 		//inserting the username into blocklist of signed user
-			var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '', '" + username + "', '')";
+			var query_to_send = "INSERT INTO " + signed_username + "_info VALUES('', '', '', '', '', '" + username + "', '', '')";
 			$.post('php/change_comp.php', {query_to_send: query_to_send}, function(e)
 			{
 				if(e == 1)
@@ -629,7 +647,9 @@
 					}
 					else
 					{
-						$('.post_textarea').val('Something went wrong while posting your post');
+						$('.warn_box').text("Something went wrong while posting your post");
+						$('.warn_box').css('background', 'red');
+						$('.warn_box').fadeIn(200).delay(2000).fadeOut(200);
 					}
 				});
 			}
@@ -700,7 +720,7 @@
 	/*----entering animation of post divs-------*/
 		$(window).scroll(function()
 		{
-			var post_container_pos = $('.post_container').offset().top/1.7;
+			var post_container_pos = $('.post_container').offset().top/3.5;
 			var scroll_pos = $(this).scrollTop();
 
 			if(scroll_pos > post_container_pos)
@@ -709,6 +729,7 @@
 			}
 		});
 		
+		$('.post_div').addClass('post_div_entry');
 	</script>
 
 </body>
